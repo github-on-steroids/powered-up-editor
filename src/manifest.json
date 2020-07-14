@@ -1,14 +1,11 @@
 {
   "manifest_version": 2,
   "name": "github-on-stedroid-editor",
-  "description": "",
   "version": "0.0.1",
-  "author": "",
-  "homepage_url": "",
   "permissions": ["activeTab", "storage"],
   "content_scripts": [
     {
-      "js": ["content.js"],
+      "js": ["content.js", "jquery.js"],
       "matches": ["https://github.com/*"]
     }
   ],
