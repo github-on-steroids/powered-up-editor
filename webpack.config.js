@@ -2,27 +2,25 @@
 const path = require('path')
 const webpack = require('webpack')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 
 module.exports = {
   mode: 'development',
   devtool: 'source-map',
   entry: {
     // options: './src/options',
-    background: './src/background.ts',
-    content: './src/content.ts',
+    background: './src/background.js',
+    content: './src/content.js',
   },
   plugins: [
     new webpack.DefinePlugin({
       process: {},
     }),
-    new ForkTsCheckerWebpackPlugin(),
     new webpack.optimize.ModuleConcatenationPlugin(),
     new CopyWebpackPlugin([
       {
         from: '*',
         context: 'src',
-        ignore: '*.ts',
+        ignore: '*.js',
       },
     ]),
   ],
@@ -34,11 +32,10 @@ module.exports = {
     rules: [
       {
         test: /\.ts?$/,
-        loader: 'ts-loader',
+        loader: 'babel-loader',
         exclude: /node_modules/,
         options: {
-          // disable type checker - we will use it in fork plugin
-          transpileOnly: true,
+          presets: ['@babel/preset-env'],
         },
       },
       {
