@@ -1,3 +1,3 @@
-import { init } from '@github-on-steroids/editor'
+import * as init from '@github-on-steroids/editor'
 
 init()
